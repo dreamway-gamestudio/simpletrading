@@ -107,6 +107,24 @@ function closeModal() {
 }
 
 /**
+ * Բացում/փակում է մոբայլ մենյուն
+ */
+function toggleMobileMenu() {
+    const mobileMenu = document.getElementById('mobile-menu');
+    const burgerIcon = document.getElementById('burger-icon');
+    
+    if (mobileMenu.classList.contains('hidden')) {
+        mobileMenu.classList.remove('hidden');
+        // Փոխում ենք բուրգերի իկոնը X-ի
+        burgerIcon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>';
+    } else {
+        mobileMenu.classList.add('hidden');
+        // Վերադարձնում ենք բուրգերի իկոնը
+        burgerIcon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>';
+    }
+}
+
+/**
  * Բացում/փակում է FAQ հարցերը
  * @param {number} id - FAQ-ի ID
  */

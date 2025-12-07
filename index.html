@@ -128,14 +128,34 @@
 <body class="font-sans chart-bg min-h-screen supports-[min-height:100dvh]:min-h-[100dvh] flex flex-col">
 
     <!-- Վերևի Մենյո -->
-    <header class="bg-tradeGray border-b border-gray-800 sticky top-0 z-50">
+    <header class="bg-tradeGray border-b border-gray-800 sticky top-0 z-50 backdrop-blur-sm bg-opacity-95">
         <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-            <div class="text-2xl font-bold text-tradeYellow tracking-wider">SIMPLE<span class="text-white">TRADING</span></div>
-            <nav class="hidden md:flex space-x-6">
-                <a href="#books" class="hover:text-tradeYellow transition">Գրքեր</a>
-                <a href="#calculator" class="hover:text-tradeYellow transition">Հաշվիչ</a>
+            <div class="text-2xl font-bold text-tradeYellow tracking-wider cursor-pointer" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">SIMPLE<span class="text-white">TRADING</span></div>
+            
+            <!-- Desktop Navigation -->
+            <nav class="hidden md:flex items-center space-x-8">
+                <a href="#books" class="text-gray-300 hover:text-tradeYellow transition-colors duration-300 font-medium">Գրքեր</a>
+                <a href="#calculator" class="text-gray-300 hover:text-tradeYellow transition-colors duration-300 font-medium">Հաշվիչ</a>
+                <a href="#faq" class="text-gray-300 hover:text-tradeYellow transition-colors duration-300 font-medium">FAQ</a>
+                <button onclick="document.getElementById('calculator').scrollIntoView({behavior: 'smooth'})" class="bg-tradeYellow text-black px-6 py-2.5 rounded-lg font-bold hover:bg-yellow-400 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105">Պատվիրել</button>
             </nav>
-            <button onclick="document.getElementById('calculator').scrollIntoView({behavior: 'smooth'})" class="bg-tradeYellow text-black px-5 py-2 rounded font-bold hover:bg-yellow-400 transition">Պատվիրել</button>
+
+            <!-- Mobile Menu Button -->
+            <button onclick="toggleMobileMenu()" class="md:hidden text-white focus:outline-none" aria-label="Menu">
+                <svg id="burger-icon" class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-tradeDark border-t border-gray-800">
+            <nav class="container mx-auto px-4 py-4 flex flex-col space-y-4">
+                <a href="#books" onclick="toggleMobileMenu()" class="text-gray-300 hover:text-tradeYellow transition-colors duration-300 py-2 border-b border-gray-800 font-medium">📚 Գրքեր</a>
+                <a href="#calculator" onclick="toggleMobileMenu()" class="text-gray-300 hover:text-tradeYellow transition-colors duration-300 py-2 border-b border-gray-800 font-medium">🧮 Հաշվիչ</a>
+                <a href="#faq" onclick="toggleMobileMenu()" class="text-gray-300 hover:text-tradeYellow transition-colors duration-300 py-2 border-b border-gray-800 font-medium">❓ FAQ</a>
+                <button onclick="document.getElementById('calculator').scrollIntoView({behavior: 'smooth'}); toggleMobileMenu();" class="bg-tradeYellow text-black px-6 py-3 rounded-lg font-bold hover:bg-yellow-400 transition-all duration-300 shadow-lg text-center">Պատվիրել հիմա</button>
+            </nav>
         </div>
     </header>
 
