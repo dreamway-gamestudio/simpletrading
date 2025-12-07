@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="hy">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="Թրեյդինգի գրքեր և ուղեցույցներ">
+    <title>Simple Trading - Գրքեր</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Подключаем Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        tradeDark: '#121417',
+                        tradeGray: '#1e2329',
+                        tradeYellow: '#FCD535',
+                        tradeGreen: '#0ECB81',
+                        tradeRed: '#F6465D',
+                    },
+                    fontFamily: {
+                        sans: ['Montserrat', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Базовые стили для плавности и фона */
+        body { 
+            background-color: #121417; 
+            color: #EAECEF; 
+            -webkit-tap-highlight-color: transparent; /* Убирает синюю подсветку при клике на iPhone */
+        }
+        
+        .chart-bg {
+            background-image: linear-gradient(0deg, transparent 24%, rgba(255, 255, 255, .05) 25%, rgba(255, 255, 255, .05) 26%, transparent 27%, transparent 74%, rgba(255, 255, 255, .05) 75%, rgba(255, 255, 255, .05) 76%, transparent 77%, transparent), linear-gradient(90deg, transparent 24%, rgba(255, 255, 255, .05) 25%, rgba(255, 255, 255, .05) 26%, transparent 27%, transparent 74%, rgba(255, 255, 255, .05) 75%, rgba(255, 255, 255, .05) 76%, transparent 77%, transparent);
+            background-size: 50px 50px;
+        }
+
+        /* Контейнер для картинок */
+        .book-img-container {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #2b313a;
+            overflow: hidden;
+        }
+        
+        .book-cover {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+    </style>
+</head>
+<body class="font-sans chart-bg min-h-screen supports-[min-height:100dvh]:min-h-[100dvh] flex flex-col">
+
+    <!-- Header -->
+    <header class="bg-tradeGray border-b border-gray-800 sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="text-2xl font-bold text-tradeYellow tracking-wider">SIMPLE<span class="text-white">TRADING</span></div>
+            <nav class="hidden md:flex space-x-6">
+                <a href="#books" class="hover:text-tradeYellow transition">Գրքեր</a>
+                <a href="#calculator" class="hover:text-tradeYellow transition">Հաշվիչ</a>
+            </nav>
+            <button onclick="document.getElementById('calculator').scrollIntoView({behavior: 'smooth'})" class="bg-tradeYellow text-black px-5 py-2 rounded font-bold hover:bg-yellow-400 transition">Պատվիրել</button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="text-center py-12 px-4">
+        <h1 class="text-3xl md:text-5xl font-bold mb-4">Թրեյդինգի <span class="text-tradeGreen">Ուղեցույցներ</span></h1>
+        <p class="text-gray-400 text-base md:text-lg max-w-2xl mx-auto">Սովորիր տեխնիկական վերլուծություն և գնային շարժումներ մեր մասնագիտացված գրքերի օգնությամբ:</p>
+    </section>
+
+    <!-- Books Section -->
+    <section id="books" class="container mx-auto px-4 py-8">
+        <h2 class="text-2xl md:text-3xl font-bold mb-8 text-center border-l-4 border-tradeYellow inline-block pl-4">Մեր Գրքերը</h2>
+        
+        <!-- Сетка: На телефоне 1, на планшете и ПК 2 -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 max-w-5xl mx-auto">
+            
+            <!-- Book 1 -->
+            <div class="bg-tradeGray rounded-xl overflow-hidden shadow-lg border border-gray-800 flex flex-col">
+                <div class="h-64 sm:h-80 w-full relative group bg-gray-800">
+                    <div class="book-img-container">
+                        <img src="https://i.postimg.cc/YSxwN717/01.jpg" alt="ՊԱՐԶ Թրեյդինգ" class="book-cover">
+                    </div>
+                    <!-- Кнопка поверх (для телефонов сделал всегда видимой полупрозрачной кнопкой, для ПК - ховер) -->
+                    <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition flex items-center justify-center">
+                        <button onclick="openModal(1)" class="bg-white text-black px-4 py-2 rounded font-bold shadow-xl opacity-0 group-hover:opacity-100 transition transform translate-y-4 group-hover:translate-y-0">
+                            Տեսնել ավելին
+                        </button>
+                        <!-- Mobile Trigger (invisible overlay for touch) -->
+                        <a href="javascript:openModal(1)" class="absolute inset-0 md:hidden"></a>
+                    </div>
+                </div>
+                <div class="p-5 border-t border-gray-700 flex-grow">
+                    <h3 class="text-lg md:text-xl font-bold mb-2">ՊԱՐԶ Թրեյդինգի ուղեցույց</h3>
+                    <div class="flex justify-between text-sm text-gray-400 mt-4">
+                        <span>Տպագիր: <span class="text-tradeGreen font-bold">7900 ֏</span></span>
+                        <span>PDF: <span class="text-tradeGreen font-bold">3900 ֏</span></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Book 2 -->
+            <div class="bg-tradeGray rounded-xl overflow-hidden shadow-lg border border-gray-800 flex flex-col">
+                <div class="h-64 sm:h-80 w-full relative group bg-gray-800">
+                    <div class="book-img-container">
+                        <img src="https://i.postimg.cc/YqmKnY1V/02.jpg" alt="Գնային շարժում" class="book-cover">
+                    </div>
+                    <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition flex items-center justify-center">
+                        <button onclick="openModal(2)" class="bg-white text-black px-4 py-2 rounded font-bold shadow-xl opacity-0 group-hover:opacity-100 transition transform translate-y-4 group-hover:translate-y-0">
+                            Տեսնել ավելին
+                        </button>
+                         <a href="javascript:openModal(2)" class="absolute inset-0 md:hidden"></a>
+                    </div>
+                </div>
+                <div class="p-5 border-t border-gray-700 flex-grow">
+                    <h3 class="text-lg md:text-xl font-bold mb-2">Գնային շարժում և կառուցվածքներ</h3>
+                    <div class="flex justify-between text-sm text-gray-400 mt-4">
+                        <span>Տպագիր: <span class="text-tradeGreen font-bold">8900 ֏</span></span>
+                        <span>PDF: <span class="text-tradeGreen font-bold">4900 ֏</span></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Book 3 -->
+            <div class="bg-tradeGray rounded-xl overflow-hidden shadow-lg border border-gray-800 flex flex-col md:col-span-2 md:w-1/2 md:mx-auto w-full">
+                <div class="h-64 sm:h-80 w-full relative group bg-gray-800">
+                    <div class="book-img-container">
+                        <img src="https://i.postimg.cc/FKNMH6wy/03.jpg" alt="Տեխնիկական վերլուծություն" class="book-cover">
+                    </div>
+                    <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition flex items-center justify-center">
+                        <button onclick="openModal(3)" class="bg-white text-black px-4 py-2 rounded font-bold shadow-xl opacity-0 group-hover:opacity-100 transition transform translate-y-4 group-hover:translate-y-0">
+                            Տեսնել ավելին
+                        </button>
+                         <a href="javascript:openModal(3)" class="absolute inset-0 md:hidden"></a>
+                    </div>
+                </div>
+                <div class="p-5 border-t border-gray-700 flex-grow">
+                    <h3 class="text-lg md:text-xl font-bold mb-2">Տեխնիկական և գրաֆիկական վերլուծություն</h3>
+                    <div class="flex justify-between text-sm text-gray-400 mt-4">
+                        <span>Տպագիր: <span class="text-tradeGreen font-bold">6900 ֏</span></span>
+                        <span>PDF: <span class="text-tradeGreen font-bold">2900 ֏</span></span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Calculator Section -->
+    <section id="calculator" class="container mx-auto px-4 py-12">
+        <div class="max-w-4xl mx-auto bg-tradeGray rounded-2xl p-4 md:p-10 border border-gray-700 shadow-2xl">
+            <h2 class="text-2xl font-bold mb-6 text-center text-tradeYellow">Հաշվիչ և Պատվեր</h2>
+            
+            <!-- Headers -->
+            <div class="grid grid-cols-4 gap-2 mb-4 text-xs md:text-base text-gray-400 font-semibold text-center border-b border-gray-700 pb-2">
+                <div class="col-span-2 text-left pl-2">Գիրք</div>
+                <div>Տպագիր</div>
+                <div>PDF</div>
+            </div>
+
+            <!-- Row 1 -->
+            <div class="grid grid-cols-4 gap-2 mb-4 items-center border-b border-gray-800 pb-4">
+                <div class="col-span-2 flex items-center gap-2 md:gap-3">
+                    <img src="https://i.postimg.cc/YSxwN717/01.jpg" class="w-10 h-14 md:w-12 md:h-16 object-cover rounded border border-gray-600">
+                    <span class="text-xs md:text-base leading-tight">ՊԱՐԶ Թրեյդինգ</span>
+                </div>
+                <!-- Checkbox Print -->
+                <div class="flex justify-center">
+                    <label class="cursor-pointer relative p-2">
+                        <input type="checkbox" class="peer sr-only item-check" data-type="print" data-price="7900" data-name="ՊԱՐԶ (Տպագիր)">
+                        <div class="w-6 h-6 border-2 border-gray-500 rounded flex items-center justify-center transition peer-checked:bg-tradeYellow peer-checked:border-tradeYellow">
+                            <svg class="w-4 h-4 text-black hidden peer-checked:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                        </div>
+                    </label>
+                </div>
+                <!-- Checkbox PDF -->
+                <div class="flex justify-center">
+                    <label class="cursor-pointer relative p-2">
+                        <input type="checkbox" class="peer sr-only item-check" data-type="pdf" data-price="3900" data-name="ՊԱՐԶ (PDF)">
+                        <div class="w-6 h-6 border-2 border-gray-500 rounded flex items-center justify-center transition peer-checked:bg-tradeYellow peer-checked:border-tradeYellow">
+                            <svg class="w-4 h-4 text-black hidden peer-checked:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                        </div>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Row 2 -->
+            <div class="grid grid-cols-4 gap-2 mb-4 items-center border-b border-gray-800 pb-4">
+                <div class="col-span-2 flex items-center gap-2 md:gap-3">
+                    <img src="https://i.postimg.cc/YqmKnY1V/02.jpg" class="w-10 h-14 md:w-12 md:h-16 object-cover rounded border border-gray-600">
+                    <span class="text-xs md:text-base leading-tight">Գնային շարժում</span>
+                </div>
+                <div class="flex justify-center">
+                    <label class="cursor-pointer relative p-2">
+                        <input type="checkbox" class="peer sr-only item-check" data-type="print" data-price="8900" data-name="Գնային շարժում (Տպագիր)">
+                        <div class="w-6 h-6 border-2 border-gray-500 rounded flex items-center justify-center transition peer-checked:bg-tradeYellow peer-checked:border-tradeYellow">
+                            <svg class="w-4 h-4 text-black hidden peer-checked:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                        </div>
+                    </label>
+                </div>
+                <div class="flex justify-center">
+                    <label class="cursor-pointer relative p-2">
+                        <input type="checkbox" class="peer sr-only item-check" data-type="pdf" data-price="4900" data-name="Գնային շարժում (PDF)">
+                        <div class="w-6 h-6 border-2 border-gray-500 rounded flex items-center justify-center transition peer-checked:bg-tradeYellow peer-checked:border-tradeYellow">
+                            <svg class="w-4 h-4 text-black hidden peer-checked:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                        </div>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Row 3 -->
+            <div class="grid grid-cols-4 gap-2 mb-6 items-center">
+                <div class="col-span-2 flex items-center gap-2 md:gap-3">
+                    <img src="https://i.postimg.cc/FKNMH6wy/03.jpg" class="w-10 h-14 md:w-12 md:h-16 object-cover rounded border border-gray-600">
+                    <span class="text-xs md:text-base leading-tight">Տեխնիկական</span>
+                </div>
+                <div class="flex justify-center">
+                    <label class="cursor-pointer relative p-2">
+                        <input type="checkbox" class="peer sr-only item-check" data-type="print" data-price="6900" data-name="Տեխնիկական (Տպագիր)">
+                        <div class="w-6 h-6 border-2 border-gray-500 rounded flex items-center justify-center transition peer-checked:bg-tradeYellow peer-checked:border-tradeYellow">
+                            <svg class="w-4 h-4 text-black hidden peer-checked:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                        </div>
+                    </label>
+                </div>
+                <div class="flex justify-center">
+                    <label class="cursor-pointer relative p-2">
+                        <input type="checkbox" class="peer sr-only item-check" data-type="pdf" data-price="2900" data-name="Տեխնիկական (PDF)">
+                        <div class="w-6 h-6 border-2 border-gray-500 rounded flex items-center justify-center transition peer-checked:bg-tradeYellow peer-checked:border-tradeYellow">
+                            <svg class="w-4 h-4 text-black hidden peer-checked:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                        </div>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Total Logic Display -->
+            <div class="bg-black bg-opacity-30 rounded-lg p-4 flex justify-between items-center mb-6">
+                <div class="pr-2">
+                    <p class="text-xs md:text-sm text-gray-400" id="discount-msg">Ընտրեք 2+ գիրք զեղչի համար</p>
+                </div>
+                <div class="text-right whitespace-nowrap">
+                    <p class="text-xs text-gray-400">Ընդհանուր</p>
+                    <p class="text-2xl md:text-3xl font-bold text-tradeGreen" id="total-price">0 ֏</p>
+                </div>
+            </div>
+
+            <!-- Action Button -->
+            <button id="btn-order-start" onclick="showOrderForm()" class="w-full bg-tradeYellow text-black font-bold py-4 rounded-lg hover:bg-yellow-400 transition text-lg uppercase tracking-wide disabled:opacity-50 disabled:cursor-not-allowed" disabled>
+                Պատվիրել հիմա
+            </button>
+
+            <!-- ORDER FORM -->
+            <div id="order-form" class="hidden mt-8 border-t border-gray-700 pt-8 animate-fade-in">
+                <h3 class="text-xl font-bold mb-4 text-white">Լրացրեք տվյալները</h3>
+                <form id="contactForm" onsubmit="sendOrder(event)" class="space-y-4">
+                    <div>
+                        <label class="block text-sm text-gray-400 mb-1">Անուն</label>
+                        <input type="text" id="u_name" required class="w-full bg-gray-800 border border-gray-600 rounded p-3 text-white focus:border-tradeYellow focus:outline-none transition appearance-none">
+                    </div>
+                    <div>
+                        <label class="block text-sm text-gray-400 mb-1">Հեռախոսահամար</label>
+                        <input type="tel" id="u_phone" required class="w-full bg-gray-800 border border-gray-600 rounded p-3 text-white focus:border-tradeYellow focus:outline-none transition appearance-none">
+                    </div>
+                    <div>
+                        <label class="block text-sm text-gray-400 mb-1">Telegram / Էլ. հասցե</label>
+                        <input type="text" id="u_contact" required class="w-full bg-gray-800 border border-gray-600 rounded p-3 text-white focus:border-tradeYellow focus:outline-none transition appearance-none">
+                    </div>
+                    <button type="submit" class="w-full bg-tradeGreen text-white font-bold py-4 rounded-lg hover:bg-green-600 transition text-lg mt-4 shadow-lg shadow-green-900/50">
+                        Ուղարկել Պատվերը
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black py-8 mt-auto border-t border-gray-800">
+        <div class="container mx-auto px-4 text-center text-gray-500 text-sm">
+            <p>&copy; 2024 Simple Trading. Բոլոր իրավունքները պաշտպանված են:</p>
+        </div>
+    </footer>
+
+    <!-- Book Details Modal -->
+    <div id="bookModal" class="fixed inset-0 bg-black bg-opacity-90 z-[99] hidden flex items-center justify-center px-4 backdrop-blur-sm overflow-y-auto">
+        <div class="bg-tradeGray p-6 md:p-8 rounded-xl max-w-lg w-full relative border border-gray-700 flex flex-col md:flex-row gap-6 my-auto">
+            <button onclick="closeModal()" class="absolute top-3 right-3 text-gray-400 hover:text-white text-3xl z-10 p-2">&times;</button>
+            
+            <!-- Modal Image -->
+            <div class="w-full md:w-1/3 flex items-center justify-center bg-gray-800 rounded p-2">
+                 <img id="modal-img" src="" class="max-w-full max-h-[250px] object-contain">
+            </div>
+
+            <div class="w-full md:w-2/3 flex flex-col justify-center">
+                <h3 id="modal-title" class="text-2xl font-bold mb-4 text-tradeYellow leading-tight"></h3>
+                <p id="modal-desc" class="text-gray-300 mb-6 leading-relaxed text-sm"></p>
+                <button onclick="closeModal(); document.getElementById('calculator').scrollIntoView({behavior: 'smooth'})" class="w-full bg-tradeYellow text-black font-bold py-3 rounded hover:bg-yellow-400 transition">
+                    Գնել (Գնալ հաշվիչին)
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        const DISCOUNT_RATE = 0.10; // 10%
+        
+        const checkboxes = document.querySelectorAll('.item-check');
+        const totalPriceEl = document.getElementById('total-price');
+        const discountMsgEl = document.getElementById('discount-msg');
+        const orderBtn = document.getElementById('btn-order-start');
+
+        checkboxes.forEach(cb => {
+            cb.addEventListener('change', calculateTotal);
+        });
+
+        function calculateTotal() {
+            let printSum = 0;
+            let printCount = 0;
+            let pdfSum = 0;
+            let pdfCount = 0;
+
+            checkboxes.forEach(cb => {
+                if (cb.checked) {
+                    const price = parseFloat(cb.getAttribute('data-price'));
+                    const type = cb.getAttribute('data-type');
+                    
+                    if (type === 'print') {
+                        printSum += price;
+                        printCount++;
+                    } else {
+                        pdfSum += price;
+                        pdfCount++;
+                    }
+                }
+            });
+
+            // Logic from Excel: (Count > 1) ? Sum * 0.9 : Sum
+            let finalPrint = (printCount > 1) ? printSum * (1 - DISCOUNT_RATE) : printSum;
+            let finalPdf = (pdfCount > 1) ? pdfSum * (1 - DISCOUNT_RATE) : pdfSum;
+
+            let total = finalPrint + finalPdf;
+
+            // Update UI
+            totalPriceEl.textContent = Math.ceil(total) + " ֏";
+            
+            if (printCount > 1 || pdfCount > 1) {
+                discountMsgEl.textContent = "Զեղչը կիրառված է (10%)";
+                discountMsgEl.classList.add("text-tradeGreen");
+            } else {
+                discountMsgEl.textContent = "Ընտրեք 2 կամ ավել գիրք (նույն տիպի) զեղչի համար";
+                discountMsgEl.classList.remove("text-tradeGreen");
+            }
+
+            if (total > 0) {
+                orderBtn.disabled = false;
+            } else {
+                orderBtn.disabled = true;
+                document.getElementById('order-form').classList.add('hidden');
+            }
+        }
+
+        function showOrderForm() {
+            const form = document.getElementById('order-form');
+            form.classList.remove('hidden');
+            // Timeout to allow DOM update on mobile
+            setTimeout(() => {
+                form.scrollIntoView({behavior: 'smooth'});
+            }, 100);
+        }
+
+        function openModal(id) {
+            const modal = document.getElementById('bookModal');
+            const title = document.getElementById('modal-title');
+            const desc = document.getElementById('modal-desc');
+            const img = document.getElementById('modal-img');
+
+            if(id === 1) {
+                title.textContent = "ՊԱՐԶ Թրեյդինգի ուղեցույց";
+                desc.textContent = "Այս գիրքը սկսնակների համար է: Սովորեք մոմային մոդելները, հիմնական հասկացությունները և ինչպես կարդալ գրաֆիկները պարզ լեզվով:";
+                img.src = "https://i.postimg.cc/YSxwN717/01.jpg";
+            } else if(id === 2) {
+                title.textContent = "Գնային շարժում և կառուցվածքներ";
+                desc.textContent = "Price Action-ի խորացված ուսումնասիրություն: Իմացեք, թե ինչպես են շուկայի մեծ խաղացողները շարժում գները և ինչպես միանալ նրանց:";
+                img.src = "https://i.postimg.cc/YqmKnY1V/02.jpg";
+            } else {
+                title.textContent = "Տեխնիկական վերլուծություն";
+                desc.textContent = "Գրաֆիկական ֆիգուրներ, ինդիկատորներ և շուկայի հոգեբանություն: Ամբողջական ձեռնարկ պրոֆեսիոնալ վերլուծության համար:";
+                img.src = "https://i.postimg.cc/FKNMH6wy/03.jpg";
+            }
+            modal.classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('bookModal').classList.add('hidden');
+        }
+
+        async function sendOrder(e) {
+            e.preventDefault();
+
+            const name = document.getElementById('u_name').value;
+            const phone = document.getElementById('u_phone').value;
+            const contact = document.getElementById('u_contact').value;
+            const total = totalPriceEl.textContent;
+            
+            let items = [];
+            checkboxes.forEach(cb => {
+                if(cb.checked) {
+                    items.push(cb.getAttribute('data-name'));
+                }
+            });
+
+            // Отключаем кнопку отправки
+            const submitBtn = e.target.querySelector('button[type="submit"]');
+            const originalText = submitBtn.textContent;
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Отправка...';
+
+            try {
+                const response = await fetch('/api/send-telegram', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        name,
+                        phone,
+                        contact,
+                        items,
+                        total
+                    })
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    // Успешная отправка
+                    alert('✅ Заказ успешно отправлен! Мы свяжемся с вами в ближайшее время.');
+                    
+                    // Очищаем форму
+                    document.getElementById('contactForm').reset();
+                    checkboxes.forEach(cb => cb.checked = false);
+                    calculateTotal();
+                    document.getElementById('order-form').classList.add('hidden');
+                } else {
+                    // Ошибка от сервера
+                    alert('❌ Ошибка: ' + (data.error || 'Не удалось отправить заказ'));
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('❌ Ошибка соединения. Проверьте интернет и попробуйте снова.');
+            } finally {
+                // Включаем кнопку обратно
+                submitBtn.disabled = false;
+                submitBtn.textContent = originalText;
+            }
+        }
+    </script>
+</body>
+</html>
