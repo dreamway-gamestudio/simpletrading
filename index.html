@@ -343,6 +343,78 @@
         </div>
     </section>
 
+    <!-- Հաճախ տրվող հարցեր -->
+    <section id="faq" class="container mx-auto px-4 py-12">
+        <h2 class="text-2xl md:text-3xl font-bold mb-8 text-center border-l-4 border-tradeYellow inline-block pl-4">Հաճախ տրվող հարցեր</h2>
+        
+        <div class="max-w-3xl mx-auto space-y-4">
+            <!-- FAQ 1 -->
+            <div class="bg-tradeGray rounded-lg border border-gray-700 overflow-hidden">
+                <button onclick="toggleFaq(1)" class="w-full px-6 py-4 flex items-center justify-between text-left hover:bg-gray-800 transition">
+                    <span class="font-semibold text-base md:text-lg">Ինչպե՞ս պատվիրել գիրքը:</span>
+                    <svg id="arrow-1" class="w-5 h-5 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                    </svg>
+                </button>
+                <div id="faq-1" class="hidden px-6 pb-4 text-gray-400">
+                    <p>Ընտրեք ձեզ անհրաժեշտ գիրքը կամ գրքերը, սեղմեք «Պատվիրել հիմա» կոճակը և լրացրեք ձեր տվյալները: Մենք կկապվենք ձեզ հետ շուտով։</p>
+                </div>
+            </div>
+
+            <!-- FAQ 2 -->
+            <div class="bg-tradeGray rounded-lg border border-gray-700 overflow-hidden">
+                <button onclick="toggleFaq(2)" class="w-full px-6 py-4 flex items-center justify-between text-left hover:bg-gray-800 transition">
+                    <span class="font-semibold text-base md:text-lg">Ինչպիսի՞ն է առաքման ժամկետը:</span>
+                    <svg id="arrow-2" class="w-5 h-5 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                    </svg>
+                </button>
+                <div id="faq-2" class="hidden px-6 pb-4 text-gray-400">
+                    <p>Տպագիր գրքերի առաքումը տևում է 3-5 աշխատանքային օր: PDF ֆորմատի գրքերն ուղարկվում են անմիջապես վճարումից հետո։</p>
+                </div>
+            </div>
+
+            <!-- FAQ 3 -->
+            <div class="bg-tradeGray rounded-lg border border-gray-700 overflow-hidden">
+                <button onclick="toggleFaq(3)" class="w-full px-6 py-4 flex items-center justify-between text-left hover:bg-gray-800 transition">
+                    <span class="font-semibold text-base md:text-lg">Ունե՞ք զեղչեր:</span>
+                    <svg id="arrow-3" class="w-5 h-5 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                    </svg>
+                </button>
+                <div id="faq-3" class="hidden px-6 pb-4 text-gray-400">
+                    <p>Այո՛, երբ պատվիրում եք 2 կամ ավելի գիրք նույն տիպի (տպագիր կամ PDF), դուք ստանում եք 10% զեղչ ընդհանուր գումարից։</p>
+                </div>
+            </div>
+
+            <!-- FAQ 4 -->
+            <div class="bg-tradeGray rounded-lg border border-gray-700 overflow-hidden">
+                <button onclick="toggleFaq(4)" class="w-full px-6 py-4 flex items-center justify-between text-left hover:bg-gray-800 transition">
+                    <span class="font-semibold text-base md:text-lg">Ո՞վ կարող է օգտվել այս գրքերից:</span>
+                    <svg id="arrow-4" class="w-5 h-5 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                    </svg>
+                </button>
+                <div id="faq-4" class="hidden px-6 pb-4 text-gray-400">
+                    <p>Գրքերը հարմար են ինչպես սկսնակների, այնպես էլ փորձառու թրեյդերների համար: «ՊԱՐԶ Թրեյդինգ»-ը նախատեսված է սկսնակների համար, մյուս երկուսը՝ ավելի խորը իմացությունների համար։</p>
+                </div>
+            </div>
+
+            <!-- FAQ 5 -->
+            <div class="bg-tradeGray rounded-lg border border-gray-700 overflow-hidden">
+                <button onclick="toggleFaq(5)" class="w-full px-6 py-4 flex items-center justify-between text-left hover:bg-gray-800 transition">
+                    <span class="font-semibold text-base md:text-lg">Ինչպիսի՞ վճարման եղանակներ ունեք:</span>
+                    <svg id="arrow-5" class="w-5 h-5 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                    </svg>
+                </button>
+                <div id="faq-5" class="hidden px-6 pb-4 text-gray-400">
+                    <p>Ընդունում ենք բանկային փոխանցումներ, կանխիկ և առցանց վճարումներ: Կոնկրետ տեղեկությունները կտրամադրվեն պատվերը հաստատելուց հետո։</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Ստորին Մաս -->
     <footer class="bg-black py-8 mt-auto border-t border-gray-800">
         <div class="container mx-auto px-4 text-center text-gray-500 text-sm">

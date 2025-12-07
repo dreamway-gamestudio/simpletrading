@@ -107,6 +107,32 @@ function closeModal() {
 }
 
 /**
+ * Բացում/փակում է FAQ հարցերը
+ * @param {number} id - FAQ-ի ID
+ */
+function toggleFaq(id) {
+    const currentFaq = document.getElementById(`faq-${id}`);
+    const currentArrow = document.getElementById(`arrow-${id}`);
+    const isHidden = currentFaq.classList.contains('hidden');
+    
+    // Փակում ենք բոլոր FAQ-ները
+    for (let i = 1; i <= 5; i++) {
+        const faq = document.getElementById(`faq-${i}`);
+        const arrow = document.getElementById(`arrow-${i}`);
+        if (faq && arrow) {
+            faq.classList.add('hidden');
+            arrow.classList.remove('rotate-180');
+        }
+    }
+    
+    // Բացում ենք ընթացիկը, եթե այն փակ էր
+    if (isHidden) {
+        currentFaq.classList.remove('hidden');
+        currentArrow.classList.add('rotate-180');
+    }
+}
+
+/**
  * Ուղարկում է պատվերը Telegram-ի միջոցով
  * @param {Event} e - Submit իրադարձություն
  */
