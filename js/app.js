@@ -1,5 +1,6 @@
-// Զեղչի դրույքաչափ
-const DISCOUNT_RATE = 0.10; // 10%
+// Ֆիքսված գներ երբ ընտրված են 3 գրքերը
+const PRINT_BUNDLE_PRICE = 18900;
+const PDF_BUNDLE_PRICE = 6900;
 
 // DOM էլեմենտներ
 const checkboxes = document.querySelectorAll('.item-check');
@@ -36,20 +37,20 @@ function calculateTotal() {
         }
     });
 
-    // Զեղչի տրամաբանություն: (Քանակ > 1) ? Գումար * 0.9 : Գումար
-    let finalPrint = (printCount > 1) ? printSum * (1 - DISCOUNT_RATE) : printSum;
-    let finalPdf = (pdfCount > 1) ? pdfSum * (1 - DISCOUNT_RATE) : pdfSum;
+    // Զեղչի տրամաբանություն: Եթե ընտրված են 3 Տպագիր -> 18900, 3 PDF -> 6900
+    let finalPrint = (printCount === 3) ? PRINT_BUNDLE_PRICE : printSum;
+    let finalPdf = (pdfCount === 3) ? PDF_BUNDLE_PRICE : pdfSum;
 
     let total = finalPrint + finalPdf;
 
     // UI թարմացում
     totalPriceEl.textContent = Math.ceil(total) + " ֏";
     
-    if (printCount > 1 || pdfCount > 1) {
-        discountMsgEl.textContent = "Զեղչը կիրառված է (10%)";
+    if (printCount === 3 || pdfCount === 3) {
+        discountMsgEl.textContent = "Զեղչը կիրառված է";
         discountMsgEl.classList.add("text-tradeGreen");
     } else {
-        discountMsgEl.textContent = "Ընտրեք 2 կամ ավել գիրք (նույն տիպի) զեղչի համար";
+        discountMsgEl.textContent = "Ընտրեք 3 գիրք (նույն տիպի) զեղչի համար";
         discountMsgEl.classList.remove("text-tradeGreen");
     }
 
