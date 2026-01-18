@@ -47,7 +47,8 @@ function calculateTotal() {
     totalPriceEl.textContent = Math.ceil(total) + " ֏";
     
     if (printCount === 3 || pdfCount === 3) {
-        discountMsgEl.textContent = "Զեղչը կիրառված է";
+        let oldPrice = printSum + pdfSum;
+        discountMsgEl.textContent = `${Math.ceil(oldPrice)}֏-ի փոխարեն միասին կարժենա ${Math.ceil(total)}֏`;
         discountMsgEl.classList.add("text-tradeGreen");
     } else {
         discountMsgEl.textContent = "Ընտրեք 3 գիրք (նույն տիպի) զեղչի համար";
