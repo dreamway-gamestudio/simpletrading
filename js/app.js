@@ -1,5 +1,6 @@
-// Զեղչի դրույքաչափ
-const DISCOUNT_RATE = 0.10; // 10%
+// Ֆիքսված գներ երբ ընտրված են 3 գրքերը
+const PRINT_BUNDLE_PRICE = 18900;
+const PDF_BUNDLE_PRICE = 6900;
 
 // DOM էլեմենտներ
 const checkboxes = document.querySelectorAll('.item-check');
@@ -36,20 +37,20 @@ function calculateTotal() {
         }
     });
 
-    // Զեղչի տրամաբանություն: (Քանակ > 1) ? Գումար * 0.9 : Գումար
-    let finalPrint = (printCount > 1) ? printSum * (1 - DISCOUNT_RATE) : printSum;
-    let finalPdf = (pdfCount > 1) ? pdfSum * (1 - DISCOUNT_RATE) : pdfSum;
+    // Զեղչի տրամաբանություն: Եթե ընտրված են 3 Տպագիր -> 18900, 3 PDF -> 6900
+    let finalPrint = (printCount === 3) ? PRINT_BUNDLE_PRICE : printSum;
+    let finalPdf = (pdfCount === 3) ? PDF_BUNDLE_PRICE : pdfSum;
 
     let total = finalPrint + finalPdf;
 
     // UI թարմացում
     totalPriceEl.textContent = Math.ceil(total) + " ֏";
     
-    if (printCount > 1 || pdfCount > 1) {
-        discountMsgEl.textContent = "Զեղչը կիրառված է (10%)";
+    if (printCount === 3 || pdfCount === 3) {
+        discountMsgEl.textContent = "Զեղչը կիրառված է";
         discountMsgEl.classList.add("text-tradeGreen");
     } else {
-        discountMsgEl.textContent = "Ընտրեք 2 կամ ավել գիրք (նույն տիպի) զեղչի համար";
+        discountMsgEl.textContent = "Ընտրեք 3 գիրք (նույն տիպի) զեղչի համար";
         discountMsgEl.classList.remove("text-tradeGreen");
     }
 
@@ -77,25 +78,46 @@ function showOrderForm() {
  * Բացում է գրքի մանրամասների մոդալը
  * @param {number} id - Գրքի ID
  */
+let currentBookId = 1;
+let currentSlide = 0;
+const totalSlides = 5;
+
 function openModal(id) {
+    currentBookId = id;
+    currentSlide = 0;
+    
     const modal = document.getElementById('bookModal');
     const title = document.getElementById('modal-title');
     const desc = document.getElementById('modal-desc');
-    const img = document.getElementById('modal-img');
+    desc.style.whiteSpace = "pre-line";
 
     if(id === 1) {
         title.textContent = "ՊԱՐԶ Թրեյդինգի ուղեցույց";
-        desc.textContent = "Այս գիրքը սկսնակների համար է: Սովորեք մոմային մոդելները, հիմնական հասկացությունները և ինչպես կարդալ գրաֆիկները պարզ լեզվով:";
-        img.src = "https://i.postimg.cc/YSxwN717/01.jpg";
+        desc.textContent =
+  "Հիմքը, առանց որի անհնար է։\n" +
+  "✅ 7 հզոր և փորձարկված ռազմավարություն։\n" +
+  "✅ 100+ գրաֆիկներ՝ բարդը պարզ դարձնող բացատրություններով։\n" +
+  "✅ Ինչպես խուսափել ավելորդ կորուստներից։";
     } else if(id === 2) {
         title.textContent = "Գնային շարժում և կառուցվածքներ";
-        desc.textContent = "Price Action-ի խորացված ուսումնասիրություն: Իմացեք, թե ինչպես են շուկայի մեծ խաղացողները շարժում գները և ինչպես միանալ նրանց:";
-        img.src = "https://i.postimg.cc/YqmKnY1V/02.jpg";
+       desc.textContent =
+  "Հասկացիր շուկայի լեզուն:\n" +
+  "✅ 15 հիմնական ստրատեգիա՝ գնի շարժը կանխատեսելու համար։\n" +
+  "✅ 15 տեխնիկական կառուցվածքներ։\n" +
+  "✅ Ռիսկի կառավարում (Risk Management)՝ կապիտալը պաշտպանելու համար։\n" +
+  "✅ 120+ իրական շուկայի օրինակներ՝ ճշգրիտ մուտքի և ելքի կետերով։";
     } else {
         title.textContent = "Տեխնիկական վերլուծություն";
-        desc.textContent = "Գրաֆիկական ֆիգուրներ, ինդիկատորներ և շուկայի հոգեբանություն: Ամբողջական ձեռնարկ պրոֆեսիոնալ վերլուծության համար:";
-        img.src = "https://i.postimg.cc/FKNMH6wy/03.jpg";
+        desc.textContent =
+  "Վերլուծության բարձրագույն մակարդակ։\n" +
+  "✅ Շուկայի տեխնիկական պատկերի խորքային վերլուծություն։\n" +
+  "✅ 15 տեխնիկական կառուցվածքներ։\n" +
+  "✅ Գրաֆիկական մոդելներ, որոնք ազդարարում են թրենդի փոփոխությունը։\n" +
+  "✅ Ինդիկատորներ, որոնք օգնում են կայացնել օբյեկտիվ որոշումներ։";
     }
+    
+    createDots();
+    updateSlider();
     modal.classList.remove('hidden');
 }
 
@@ -104,6 +126,71 @@ function openModal(id) {
  */
 function closeModal() {
     document.getElementById('bookModal').classList.add('hidden');
+    currentSlide = 0;
+}
+
+/**
+ * Փոխում է ընթացիկ սլայդը
+ * @param {number} direction - Ուղղություն: -1 = հետ, 1 = առաջ
+ */
+function changeSlide(direction) {
+    currentSlide += direction;
+    
+    if (currentSlide < 0) {
+        currentSlide = totalSlides - 1;
+    } else if (currentSlide >= totalSlides) {
+        currentSlide = 0;
+    }
+    
+    updateSlider();
+}
+
+/**
+ * Թարմացնում է սլայդերի պատկերը և ինդիկատորները
+ */
+function updateSlider() {
+    const img = document.getElementById('modal-img');
+    const bookFolder = `book ${currentBookId}`;
+    const photoNumber = String(currentSlide + 1).padStart(2, '0');
+    
+    img.src = `img/${bookFolder}/photo_${photoNumber}.jpg`;
+    
+    updateDots();
+}
+
+/**
+ * Ստեղծում է ինդիկատորների կետերը
+ */
+function createDots() {
+    const dotsContainer = document.getElementById('slider-dots');
+    dotsContainer.innerHTML = '';
+    
+    for (let i = 0; i < totalSlides; i++) {
+        const dot = document.createElement('button');
+        dot.className = 'w-2 h-2 rounded-full transition';
+        dot.onclick = () => {
+            currentSlide = i;
+            updateSlider();
+        };
+        dotsContainer.appendChild(dot);
+    }
+}
+
+/**
+ * Թարմացնում է ինդիկատորների վիզուալ վիճակը
+ */
+function updateDots() {
+    const dots = document.getElementById('slider-dots').children;
+    
+    for (let i = 0; i < dots.length; i++) {
+        if (i === currentSlide) {
+            dots[i].classList.add('bg-tradeYellow', 'w-8');
+            dots[i].classList.remove('bg-gray-500');
+        } else {
+            dots[i].classList.add('bg-gray-500');
+            dots[i].classList.remove('bg-tradeYellow', 'w-8');
+        }
+    }
 }
 
 /**
