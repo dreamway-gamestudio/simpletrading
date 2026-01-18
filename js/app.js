@@ -78,12 +78,18 @@ function showOrderForm() {
  * Բացում է գրքի մանրամասների մոդալը
  * @param {number} id - Գրքի ID
  */
+let currentBookId = 1;
+let currentSlide = 0;
+const totalSlides = 5;
+
 function openModal(id) {
+    currentBookId = id;
+    currentSlide = 0;
+    
     const modal = document.getElementById('bookModal');
     const title = document.getElementById('modal-title');
     const desc = document.getElementById('modal-desc');
     desc.style.whiteSpace = "pre-line";
-    const img = document.getElementById('modal-img');
 
     if(id === 1) {
         title.textContent = "ՊԱՐԶ Թրեյդինգի ուղեցույց";
@@ -92,7 +98,6 @@ function openModal(id) {
   "✅ 7 հզոր և փորձարկված ռազմավարություն։\n" +
   "✅ 100+ գրաֆիկներ՝ բարդը պարզ դարձնող բացատրություններով։\n" +
   "✅ Ինչպես խուսափել ավելորդ կորուստներից։";
-        img.src = "https://i.postimg.cc/YSxwN717/01.jpg";
     } else if(id === 2) {
         title.textContent = "Գնային շարժում և կառուցվածքներ";
        desc.textContent =
@@ -101,16 +106,18 @@ function openModal(id) {
   "✅ 15 տեխնիկական կառուցվածքներ։\n" +
   "✅ Ռիսկի կառավարում (Risk Management)՝ կապիտալը պաշտպանելու համար։\n" +
   "✅ 120+ իրական շուկայի օրինակներ՝ ճշգրիտ մուտքի և ելքի կետերով։";
-        img.src = "https://i.postimg.cc/YqmKnY1V/02.jpg";
     } else {
         title.textContent = "Տեխնիկական վերլուծություն";
         desc.textContent =
   "Վերլուծության բարձրագույն մակարդակ։\n" +
   "✅ Շուկայի տեխնիկական պատկերի խորքային վերլուծություն։\n" +
+  "✅ 15 տեխնիկական կառուցվածքներ։\n" +
   "✅ Գրաֆիկական մոդելներ, որոնք ազդարարում են թրենդի փոփոխությունը։\n" +
   "✅ Ինդիկատորներ, որոնք օգնում են կայացնել օբյեկտիվ որոշումներ։";
-        img.src = "https://i.postimg.cc/FKNMH6wy/03.jpg";
     }
+    
+    createDots();
+    updateSlider();
     modal.classList.remove('hidden');
 }
 
@@ -119,6 +126,71 @@ function openModal(id) {
  */
 function closeModal() {
     document.getElementById('bookModal').classList.add('hidden');
+    currentSlide = 0;
+}
+
+/**
+ * Փոխում է ընթացիկ սլայդը
+ * @param {number} direction - Ուղղություն: -1 = հետ, 1 = առաջ
+ */
+function changeSlide(direction) {
+    currentSlide += direction;
+    
+    if (currentSlide < 0) {
+        currentSlide = totalSlides - 1;
+    } else if (currentSlide >= totalSlides) {
+        currentSlide = 0;
+    }
+    
+    updateSlider();
+}
+
+/**
+ * Թարմացնում է սլայդերի պատկերը և ինդիկատորները
+ */
+function updateSlider() {
+    const img = document.getElementById('modal-img');
+    const bookFolder = `book ${currentBookId}`;
+    const photoNumber = String(currentSlide + 1).padStart(2, '0');
+    
+    img.src = `/img/${bookFolder}/photo_${photoNumber}.png`;
+    
+    updateDots();
+}
+
+/**
+ * Ստեղծում է ինդիկատորների կետերը
+ */
+function createDots() {
+    const dotsContainer = document.getElementById('slider-dots');
+    dotsContainer.innerHTML = '';
+    
+    for (let i = 0; i < totalSlides; i++) {
+        const dot = document.createElement('button');
+        dot.className = 'w-2 h-2 rounded-full transition';
+        dot.onclick = () => {
+            currentSlide = i;
+            updateSlider();
+        };
+        dotsContainer.appendChild(dot);
+    }
+}
+
+/**
+ * Թարմացնում է ինդիկատորների վիզուալ վիճակը
+ */
+function updateDots() {
+    const dots = document.getElementById('slider-dots').children;
+    
+    for (let i = 0; i < dots.length; i++) {
+        if (i === currentSlide) {
+            dots[i].classList.add('bg-tradeYellow', 'w-8');
+            dots[i].classList.remove('bg-gray-500');
+        } else {
+            dots[i].classList.add('bg-gray-500');
+            dots[i].classList.remove('bg-tradeYellow', 'w-8');
+        }
+    }
 }
 
 /**
