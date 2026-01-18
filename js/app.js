@@ -81,6 +81,25 @@ function showOrderForm() {
 let currentBookId = 1;
 let currentSlide = 0;
 const totalSlides = 5;
+let preloadedImages = {};
+
+/**
+ * Նախապես բեռնում է բոլոր սլայդերի նկարները
+ * @param {number} bookId - Գրքի ID
+ */
+function preloadImages(bookId) {
+    if (preloadedImages[bookId]) return;
+    
+    preloadedImages[bookId] = [];
+    const bookFolder = `book ${bookId}`;
+    
+    for (let i = 1; i <= totalSlides; i++) {
+        const img = new Image();
+        const photoNumber = String(i).padStart(2, '0');
+        img.src = `img/${bookFolder}/photo_${photoNumber}.jpg`;
+        preloadedImages[bookId].push(img);
+    }
+}
 
 function openModal(id) {
     currentBookId = id;
@@ -90,6 +109,8 @@ function openModal(id) {
     const title = document.getElementById('modal-title');
     const desc = document.getElementById('modal-desc');
     desc.style.whiteSpace = "pre-line";
+    
+    preloadImages(id);
 
     if(id === 1) {
         title.textContent = "ՊԱՐԶ Թրեյդինգի ուղեցույց";
@@ -120,6 +141,13 @@ function openModal(id) {
     updateSlider();
     modal.classList.remove('hidden');
 }
+
+// Предзагрузка всех изображений при загрузке страницы
+window.addEventListener('DOMContentLoaded', () => {
+    for (let i = 1; i <= 3; i++) {
+        preloadImages(i);
+    }
+});
 
 /**
  * Փակում է մոդալը
