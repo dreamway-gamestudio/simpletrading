@@ -82,6 +82,7 @@ function openModal(id) {
     const modal = document.getElementById('bookModal');
     const title = document.getElementById('modal-title');
     const desc = document.getElementById('modal-desc');
+    desc.style.whiteSpace = "pre-line";
     const img = document.getElementById('modal-img');
 
     if(id === 1) {
