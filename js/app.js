@@ -153,7 +153,7 @@ function updateSlider() {
     const bookFolder = `book ${currentBookId}`;
     const photoNumber = String(currentSlide + 1).padStart(2, '0');
     
-    img.src = `/img/${bookFolder}/photo_${photoNumber}.png`;
+    img.src = `/img/${bookFolder}/photo_${photoNumber}.jpg`;
     
     updateDots();
 }
